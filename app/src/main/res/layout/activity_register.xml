@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="730dp"
+        android:gravity="center"
+        android:text="Rejestracja"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/register_email_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_email_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textEmailAddress"
+        android:hint="Podaj adres e-mail"
+        android:layout_below="@id/register_email_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:id="@+id/register_name_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Imię"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPersonName"
+        android:hint="Twoje imie"
+        android:layout_below="@id/register_name_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:id="@+id/register_surname_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nazwisko"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_surname_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPersonName"
+        android:hint="Twoje nazwisko"
+        android:layout_below="@id/register_surname_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:id="@+id/register_password_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hasło"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_password_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPassword"
+        android:hint="Wprowadź hasło"
+        android:layout_below="@id/register_password_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:id="@+id/register_confirmPassword_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Potwierdź hasło"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_confirmPassword_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPassword"
+        android:hint="Powtórz powyższe hasło"
+        android:layout_below="@id/register_confirmPassword_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masz już konto? "
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="133dp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        />
+    <TextView
+        android:id="@+id/register_summary_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się "
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="60dp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        android:textColor="@color/primaryOrange"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tutaj"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="30dp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Utwórz Konto"
+        android:textAllCaps="false"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/rounded_orange_btn"
+        android:textSize="18dp"/>
+
+</RelativeLayout>
+
