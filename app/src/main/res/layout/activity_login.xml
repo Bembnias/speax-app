@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się"
+        android:textSize="22dp"
+        android:textFontWeight="800"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/login_email_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/register_email_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textEmailAddress"
+        android:hint="Podaj adres e-mail"
+        android:layout_below="@id/login_email_label"
+        android:background="@drawable/rounded_input"/>
+
+    <TextView
+        android:id="@+id/login_password_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hasło"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/login_password_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPassword"
+        android:hint="Wprowadź hasło"
+        android:layout_below="@id/login_password_label"
+        android:background="@drawable/rounded_input"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nie masz konta? "
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="118dp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        />
+    <TextView
+        android:id="@+id/login_summary_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Załóż je "
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="62dp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        android:textColor="@color/primaryOrange"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="30dp"
+        android:gravity="end"
+        android:text="tutaj"
+        android:textAlignment="textEnd" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się"
+        android:textAllCaps="false"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textSize="18dp"
+        android:background="@drawable/rounded_green_btn"
+        />
+
+</RelativeLayout>

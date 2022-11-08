@@ -18,12 +18,12 @@
         android:text="glowna strona" />
 
     <Button
-        android:id="@+id/toLogin"
+        android:id="@+id/toRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginEnd="150dp"
         android:layout_marginRight="150dp"
-        android:text="Go To login" />
+        android:text="Go To Register" />
 </RelativeLayout>
