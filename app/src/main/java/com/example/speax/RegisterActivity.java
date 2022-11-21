@@ -1,5 +1,6 @@
 package com.example.speax;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -10,8 +11,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class RegisterActivity extends AppCompatActivity {
     private TextView toLoginButton;
+
+    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://speax-app-default-rtdb.firebaseio.com")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,34 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(nameTxt.isEmpty() || emailTxt.isEmpty() || surnameTxt.isEmpty() || passwordTxt.isEmpty()) {
                     Toast.makeText(Register.this, "Wszystkie pole muszą zostać uzupełnione!", Toast.LENGTH_SHORT).show();
+                } else {
+                    dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if(snapshot.child("users").hasChild(emailTxt)) {
+                                Toast.makeText(Register.this, "Taki email już istnieje!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                dbRef.child("users").child(emailTxt).child("email").setValue(emailTxt);
+                                dbRef.child("users").child(emailTxt).child("name").setValue(nameTxt);
+                                dbRef.child("users").child(emailTxt).child("surname").setValue(surnameTxt);
+                                dbRef.child("users").child(emailTxt).child("password").setValue(passwordTxt);
+
+                                Toast.makeText(Register.this, "Poprawnie zarejestrowano!", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(Register.this, MainActivity.class);
+                                intent.putExtra("email", emailTxt);
+                                intent.putExtra("name", nameTxt);
+                                intent.putExtra("surname", surnameTxt);
+                                startActivity(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });
