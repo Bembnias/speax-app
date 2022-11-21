@@ -147,7 +147,7 @@
         android:gravity="end"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/register_confirm_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -157,6 +157,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:textSize="18dp"
+        android:textColor="#ffffff"
         android:background="@drawable/rounded_green_btn"
         />
 

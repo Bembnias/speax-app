@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText name = findViewById(R.id.register_name_field);
         final EditText surname = findViewById(R.id.register_surname_field);
         final EditText password = findViewById(R.id.register_password_field);
-        
+
     }
 
     public void openLoginActivity() {
