@@ -52,27 +52,28 @@ public class RegisterActivity extends AppCompatActivity {
                 final String passwordTxt = name.getText().toString();
 
                 if(nameTxt.isEmpty() || emailTxt.isEmpty() || surnameTxt.isEmpty() || passwordTxt.isEmpty()) {
-                    Toast.makeText(Register.this, "Wszystkie pole muszą zostać uzupełnione!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Wszystkie pole muszą zostać uzupełnione!", Toast.LENGTH_SHORT).show();
                 } else {
                     dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             if(snapshot.child("users").hasChild(emailTxt)) {
-                                Toast.makeText(Register.this, "Taki email już istnieje!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Taki email już istnieje!", Toast.LENGTH_SHORT).show();
                             } else {
                                 dbRef.child("users").child(emailTxt).child("email").setValue(emailTxt);
                                 dbRef.child("users").child(emailTxt).child("name").setValue(nameTxt);
                                 dbRef.child("users").child(emailTxt).child("surname").setValue(surnameTxt);
                                 dbRef.child("users").child(emailTxt).child("password").setValue(passwordTxt);
 
-                                Toast.makeText(Register.this, "Poprawnie zarejestrowano!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Poprawnie zarejestrowano!", Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(Register.this, MainActivity.class);
+                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 intent.putExtra("email", emailTxt);
                                 intent.putExtra("name", nameTxt);
                                 intent.putExtra("surname", surnameTxt);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 
