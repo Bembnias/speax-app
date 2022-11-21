@@ -88,7 +88,8 @@
         android:text="tutaj"
         android:textAlignment="textEnd" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_confirm_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -99,6 +100,7 @@
         android:background="@drawable/rounded_green_btn"
         android:text="Zaloguj się"
         android:textAllCaps="false"
+        android:textColor="#ffffff"
         android:textSize="18dp" />
 
 </RelativeLayout>
