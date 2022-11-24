@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@drawable/rounded_bg_light_1"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    >
+    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Imie i nazwisko"
+        android:layout_toRightOf="@id/user_profile_image"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#464646"
+        />
+
+    <TextView
+        android:id="@+id/user_last_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ostatnia wiadomosc"
+        android:layout_toRightOf="@id/user_profile_image"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#767676"
+        />
+
+    <TextView
+        android:id="@+id/user_lastmsg_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16.10.2022"
+        android:layout_alignParentEnd="true"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#979797"
+        />
+
+</RelativeLayout>
