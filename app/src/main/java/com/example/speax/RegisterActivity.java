@@ -14,6 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -95,5 +98,62 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editName.requestFocus();
             return;
         }
+
+        if(password.isEmpty()) {
+            editPassword.setError("Wprowadź hasło dla konta");
+            editPassword.requestFocus();
+            return;
+        }
+
+        if(confirmPassword.isEmpty()) {
+            editConfirmPassword.setError("Potwierdź swoje hasło");
+            editConfirmPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 8) {
+            editPassword.setError("Hasło musi mieć min. 8 znaków");
+            editPassword.requestFocus();
+            return;
+        }
+
+        if(!confirmPassword.equals(password)) {
+            editConfirmPassword.setError("Hasła muszą się zgadzać");
+            editConfirmPassword.requestFocus();
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        // Utworz nowego uzytkownika w bazie danych
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()) {
+                    User user = new User(name, email);
+
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Utworzyłeś nowe konto!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Błąd w trakcie rejestracji!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Utworzyłeś nowe konto!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+
     }
 }
