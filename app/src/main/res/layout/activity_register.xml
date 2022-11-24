@@ -41,7 +41,7 @@
         android:id="@+id/register_name_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Imię"
+        android:text="Imię i Nazwisko"
         android:layout_marginTop="160dp"
         android:layout_marginLeft="30dp"
         />
@@ -53,28 +53,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:inputType="textPersonName"
-        android:hint="Twoje imie"
+        android:hint="Twoje imie i nazwisko"
         android:layout_below="@id/register_name_label"
-        android:background="@drawable/rounded_input"/>
-
-    <TextView
-        android:id="@+id/register_surname_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nazwisko"
-        android:layout_marginTop="240dp"
-        android:layout_marginLeft="30dp"
-        />
-
-    <EditText
-        android:id="@+id/register_surname_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:inputType="textPersonName"
-        android:hint="Twoje nazwisko"
-        android:layout_below="@id/register_surname_label"
         android:background="@drawable/rounded_input"/>
 
     <TextView
@@ -82,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hasło"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="240dp"
         android:layout_marginLeft="30dp"
         />
 
@@ -102,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Potwierdź hasło"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="320dp"
         android:layout_marginLeft="30dp"
         />
 
@@ -159,6 +139,14 @@
         android:textSize="18dp"
         android:textColor="#ffffff"
         android:background="@drawable/rounded_green_btn"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
         />
 
 </RelativeLayout>

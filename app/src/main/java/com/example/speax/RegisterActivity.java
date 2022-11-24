@@ -7,38 +7,93 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
+
     private TextView toLoginButton;
+    private EditText editEmail, editName, editPassword, editConfirmPassword;
+    private AppCompatButton submitBtn;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        mAuth = FirebaseAuth.getInstance();
+
         // Przycisk odsylania do ekranu logowania
         toLoginButton = (TextView) findViewById(R.id.register_summary_label);
-        toLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLoginActivity();
-            }
-        });
+        toLoginButton.setOnClickListener(this);
 
+        // Przycisk do potwierdzenia rejestracji
+        submitBtn = (AppCompatButton) findViewById(R.id.register_confirm_button);
+        submitBtn.setOnClickListener(this);
+
+        editEmail = (EditText) findViewById(R.id.register_email_field);
+        editName = (EditText) findViewById(R.id.register_name_field);
+        editPassword = (EditText) findViewById(R.id.register_password_field);
+        editConfirmPassword = (EditText) findViewById(R.id.register_confirmPassword_field);
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
     }
 
-    public void openLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.register_summary_label:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.register_confirm_button:
+                registerUser();
+                break;
+        }
+    }
+
+    private void registerUser() {
+        String email = editEmail.getText().toString().trim();
+        String name = editName.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+        String confirmPassword = editConfirmPassword.getText().toString().trim();
+
+        // Sprawdz czy pola nie są puste przed wysłaniem
+        if(email.isEmpty()) {
+            editEmail.setError("Wprowadź adres e-mail");
+            editEmail.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editEmail.setError("Wprowadź poprawny e-mail");
+            editEmail.requestFocus();
+            return;
+        }
+
+        if(name.isEmpty()) {
+            editName.setError("Wprowadź imie i nazwisko");
+            editName.requestFocus();
+            return;
+        }
+
+        if(name.isEmpty()) {
+            editName.setError("Wprowadź imie i nazwisko");
+            editName.requestFocus();
+            return;
+        }
     }
 }

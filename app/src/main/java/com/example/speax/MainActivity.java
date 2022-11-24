@@ -24,7 +24,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView toRegisterButton;
 
     @Override
@@ -33,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Przycisk odsylania do ekranu rejestracji
-        toRegisterButton = (TextView) findViewById(R.id.register_summary_label);
-        toRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openRegisterActivity();
-            }
-        });
+        toRegisterButton = (TextView) findViewById(R.id.login_summary_label);
+        toRegisterButton.setOnClickListener(this);
     }
 
-    public void openRegisterActivity() {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.login_summary_label:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+        }
     }
 }
