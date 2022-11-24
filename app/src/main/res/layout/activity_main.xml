@@ -34,21 +34,12 @@
             android:layout_centerInParent="true"
             />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_profile_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <Button
+        android:id="@+id/register_summary_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/messages_recycler_view"
+        android:layout_height="wrap_content"
+        android:text="to register"
         />
 </LinearLayout>
