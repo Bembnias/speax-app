@@ -148,6 +148,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             });
                 } else {
                     Toast.makeText(RegisterActivity.this, "Utworzyłeś nowe konto!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this, ContactsActivity.class));
                     progressBar.setVisibility(View.GONE);
                 }
             }
