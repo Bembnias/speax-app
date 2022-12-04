@@ -107,5 +107,15 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(new Intent(ContactActivity.this, ContactsActivity.class));
     }
 
-
+    public void sendMsgFunc() {
+        String msg = msg_text.getText().toString();
+        if (!msg.equals("")) {
+            String userId;
+            userId = intent.getStringExtra("user-id");
+            sendMessage(fuser.getUid(), userId, msg);
+        } else {
+            Toast.makeText(ContactActivity.this, "Wpisz jakas tresc", Toast.LENGTH_SHORT).show();
+        }
+        msg_text.setText("");
+    }
 }
