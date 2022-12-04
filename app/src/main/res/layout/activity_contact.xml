@@ -8,7 +8,9 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/contact_bar"
+        >
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/contact_toolbar"
             android:layout_width="match_parent"
@@ -32,11 +34,51 @@
             android:id="@+id/contact_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Imie Naziwsko"
             android:textColor="#ffffff"
             android:textFontWeight="800"
-            android:textSize="24sp"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contact_messages"
+        android:layout_below="@+id/contact_bar"
+        android:layout_above="@+id/contact_input_wraper"
+        android:layout_marginBottom="15dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/contact_input_wraper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_input"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+        <EditText
+            android:id="@+id/contact_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:inputType="textEmailAddress"
+            android:hint="Wyślij wiadomość"
+            android:background="#FFFFFF"
+            android:layout_toLeftOf="@id/contact_send_button"
+            android:layout_centerVertical="true"
+            />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/send_icon"
+            android:id="@+id/contact_send_button"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+
             />
     </RelativeLayout>
 

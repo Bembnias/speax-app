@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(uContext, ContactActivity.class);
-                intent.putExtra("useremail", user.getEmail());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user-id", user.getUserId());
+//                Toast.makeText(uContext, "User Email: " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 uContext.startActivity(intent);
             }
         });
