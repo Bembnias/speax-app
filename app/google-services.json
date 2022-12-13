@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "762615179553",
+    "project_id": "speax-app",
+    "storage_bucket": "speax-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762615179553:android:818483db0f3ccbcd503660",
+        "android_client_info": {
+          "package_name": "com.example.speax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762615179553-krmk03ulee1fln8ce27uhpq0i51nsao8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.speax",
+            "certificate_hash": "d7e0e1da0ab2dba31c179397b892fd84871ba273"
+          }
+        },
+        {
+          "client_id": "762615179553-md6fs029u0ps87upamqof28f58qedisg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt4EhbD0hibfhroxcQ775mG9SLsVzYGZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762615179553-md6fs029u0ps87upamqof28f58qedisg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
