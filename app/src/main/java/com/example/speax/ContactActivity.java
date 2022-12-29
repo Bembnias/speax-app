@@ -55,7 +55,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(this);
+//        toolbar.setNavigationOnClickListener(this);
 
         recyclerView = findViewById(R.id.contact_messages);
         recyclerView.setHasFixedSize(true);
@@ -110,9 +110,9 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.contact_back_button:
-                backToContacts();
-                break;
+//            case R.id.contact_back_button:
+//                backToContacts();
+//                break;
             case R.id.contact_toolbar:
                 finish();
                 break;
