@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
 
@@ -134,7 +136,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if(task.isSuccessful()) {
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     String userId = firebaseUser.getUid();
-                    User user = new User(name, email, userId);
+                    String searchVal = name.toLowerCase();
+                    User user = new User(name, email, userId, searchVal);
 
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

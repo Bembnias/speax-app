@@ -1,14 +1,15 @@
 package com.example.speax;
 
 public class User {
-    public String name, email, id;
+    public String name, email, id, search;
 
     public User() {};
 
-    public User(String name, String email, String id) {
+    public User(String name, String email, String id, String search) {
         this.name = name;
         this.email = email;
         this.id = id;
+        this.search = search;
     }
 
     public String getName() {
@@ -28,5 +29,11 @@ public class User {
     }
     public void setUserId(String id) {
         this.id = id;
+    }
+    public String getSearch() {
+        return search;
+    }
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

@@ -63,8 +63,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        backBtn = (ImageView) findViewById(R.id.contact_back_button);
-        backBtn.setOnClickListener(this);
+//        backBtn = (ImageView) findViewById(R.id.contact_back_button);
+//        backBtn.setOnClickListener(this);
 
         contact_name = findViewById(R.id.contact_name);
         send_btn = findViewById(R.id.contact_send_button);

@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,6 +35,8 @@ public class ContactsActivity extends AppCompatActivity implements View.OnClickL
     private UserAdapter userAdapter;
     private List<User> uUsers;
 
+    EditText search_users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +50,53 @@ public class ContactsActivity extends AppCompatActivity implements View.OnClickL
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     
         uUsers = new ArrayList<>();
-        
         redUsers();
+
+        search_users = (EditText) findViewById(R.id.contacts_search);
+        search_users.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                searchUsers(charSequence.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void searchUsers(String str) {
+        FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
+        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search").startAt(str).endAt(str+"\uf8ff");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                uUsers.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    User user = snapshot1.getValue(User.class);
+
+                    assert user != null;
+                    assert fuser != null;
+                    if (!user.getUserId().equals(fuser.getUid())) {
+                        uUsers.add(user);
+                    }
+                }
+                userAdapter = new UserAdapter(getApplicationContext(), uUsers);
+                recyclerView.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void redUsers() {
@@ -54,19 +105,22 @@ public class ContactsActivity extends AppCompatActivity implements View.OnClickL
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                uUsers.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    User user = snapshot1.getValue(User.class);
+                if (search_users.getText().toString().equals("")) {
+                    uUsers.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        User user = snapshot1.getValue(User.class);
 
-                    assert user != null;
-                    assert firebaseUser != null;
-                    if(!user.getEmail().equals(firebaseUser.getEmail())) {
-                        uUsers.add(user);
+                        assert user != null;
+                        assert firebaseUser != null;
+                        if(!user.getEmail().equals(firebaseUser.getEmail())) {
+                            uUsers.add(user);
+                        }
                     }
+
+                    userAdapter = new UserAdapter(getApplicationContext(), uUsers);
+                    recyclerView.setAdapter(userAdapter);
                 }
 
-                userAdapter = new UserAdapter(getApplicationContext(), uUsers);
-                recyclerView.setAdapter(userAdapter);
             }
 
             @Override

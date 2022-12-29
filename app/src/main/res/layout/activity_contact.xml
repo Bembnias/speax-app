@@ -19,16 +19,16 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
-        <ImageView
-            android:id="@+id/contact_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/back_icon"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="4dp"
-            android:padding="4dp"
-            />
+<!--        <ImageView-->
+<!--            android:id="@+id/contact_back_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:srcCompat="@drawable/back_icon"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_marginLeft="24dp"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:padding="4dp"-->
+<!--            />-->
 
         <TextView
             android:id="@+id/contact_name"
