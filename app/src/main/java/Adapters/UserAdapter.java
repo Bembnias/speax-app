@@ -66,8 +66,4 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             userName = itemView.findViewById(R.id.user_name);
         }
     }
-
-
-
-
 }
