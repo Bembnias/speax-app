@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".ContactsActivity">
 
     <RelativeLayout
@@ -44,6 +44,39 @@
         android:id="@+id/contacts_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"/>
+        android:layout_above="@+id/contact_input_wraper"
+        android:layout_marginTop="60dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/contact_input_wraper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_input"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+
+        <EditText
+            android:id="@+id/contacts_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/contacts_search_button"
+            android:background="#FFFFFF"
+            android:hint="Wyszukaj kontakt..."
+            android:inputType="textEmailAddress" />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/search_icon"
+            android:id="@+id/contacts_search_button"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+
+            />
+    </RelativeLayout>
 
 </RelativeLayout>

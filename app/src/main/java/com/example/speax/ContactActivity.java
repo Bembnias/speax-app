@@ -3,6 +3,8 @@ package com.example.speax;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import Adapters.MessageAdapter;
+import Adapters.UserAdapter;
 
 public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
     TextView contact_name;
@@ -31,6 +38,11 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
     FirebaseUser fuser;
     DatabaseReference dbref;
+
+    MessageAdapter messageAdapter;
+    List<Message> uMessage;
+
+    RecyclerView recyclerView;
 
     Intent intent;
 
@@ -44,6 +56,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(this);
+
+        recyclerView = findViewById(R.id.contact_messages);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         backBtn = (ImageView) findViewById(R.id.contact_back_button);
         backBtn.setOnClickListener(this);
@@ -66,6 +84,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
                 if(user.getName() != null) {
                     contact_name.setText(user.getName());
                 }
+
+                readMsgs(fuser.getUid(), userId);
             }
 
             @Override
@@ -117,5 +137,31 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(ContactActivity.this, "Wpisz jakas tresc", Toast.LENGTH_SHORT).show();
         }
         msg_text.setText("");
+    }
+
+    private void readMsgs(String myId, String userId) {
+        uMessage = new ArrayList<>();
+
+        dbref = FirebaseDatabase.getInstance().getReference("Chats");
+
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                uMessage.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    Message msg = snapshot1.getValue(Message.class);
+                    if (msg.getReceiver().equals(myId) && msg.getSender().equals(userId) || msg.getReceiver().equals(userId) && msg.getSender().equals(myId)) {
+                        uMessage.add(msg);
+                    }
+                    messageAdapter = new MessageAdapter(ContactActivity.this, uMessage);
+                    recyclerView.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
