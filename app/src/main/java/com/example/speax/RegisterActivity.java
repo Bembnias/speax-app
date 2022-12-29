@@ -121,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(!confirmPassword.equals(password)) {
             editConfirmPassword.setError("Hasła muszą się zgadzać");
             editConfirmPassword.requestFocus();
+            return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
