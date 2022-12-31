@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
@@ -30,6 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context uContext;
     private List<User> uUsers;
     String lastMsgGlobal;
+    String dateOfLastMsgGlobal;
 
     public UserAdapter(Context uContext, List<User> uUsers) {
         this.uUsers = uUsers;
@@ -48,7 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = uUsers.get(position);
         holder.userName.setText(user.getName());
 
-        lastMessageChecker(user.getUserId(), holder.lastMsg);
+        lastMessageChecker(user.getUserId(), holder.lastMsg, holder.dateOfLastMsg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,16 +75,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView userName;
         private TextView lastMsg;
+        private TextView dateOfLastMsg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userName = itemView.findViewById(R.id.user_name);
             lastMsg = itemView.findViewById(R.id.user_last_message);
+            dateOfLastMsg = itemView.findViewById(R.id.user_lastmsg_date);
         }
     }
 
-    private void lastMessageChecker(String userid, TextView lastMsg){
+    private void lastMessageChecker(String userid, TextView lastMsg, TextView dateOfLastMsg){
         lastMsgGlobal = "temp";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Chats");
@@ -92,19 +98,30 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     Message message = snapshot1.getValue(Message.class);
                     if (message.getReceiver().equals(firebaseUser.getUid()) && message.getSender().equals(userid) || message.getReceiver().equals(userid) && message.getSender().equals(firebaseUser.getUid())) {
                         lastMsgGlobal = message.getMessage();
+                        DateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date formattedTimestamp;
+                        if (message.getTimestamp() != null) {
+                            formattedTimestamp = new Date(message.getTimestamp());
+                            dateOfLastMsgGlobal = timeFormat.format(formattedTimestamp);
+                        } else {
+                            dateOfLastMsgGlobal = "";
+                        }
                     }
                 }
 
                 switch (lastMsgGlobal) {
                     case "temp":
                         lastMsg.setText("Brak wiadomosci");
+                        dateOfLastMsg.setText("");
                         break;
                     default:
                         lastMsg.setText(lastMsgGlobal);
+                        dateOfLastMsg.setText(dateOfLastMsgGlobal);
                         break;
                 }
 
                 lastMsgGlobal = "temp";
+                dateOfLastMsgGlobal = "";
             }
 
             @Override

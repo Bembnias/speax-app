@@ -5,11 +5,13 @@ public class Message {
     private String sender;
     private String receiver;
     private String message;
+    private Long timestamp;
 
-    public Message(String sender, String receiver, String message) {
+    public Message(String sender, String receiver, String message, Long timestamp) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
+        this.timestamp = timestamp;
     }
 
     public Message() {}
@@ -36,5 +38,13 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }
