@@ -103,6 +103,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
+        hashMap.put("timestamp", System.currentTimeMillis());
 
         dbReference.child("Chats").push().setValue(hashMap);
     }
