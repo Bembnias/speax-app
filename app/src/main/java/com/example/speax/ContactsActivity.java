@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapters.UserAdapter;
+import Notifications.Token;
 
 public class ContactsActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView logoutBtn;
@@ -34,6 +35,7 @@ public class ContactsActivity extends AppCompatActivity implements View.OnClickL
 
     private UserAdapter userAdapter;
     private List<User> uUsers;
+    FirebaseUser fuser;
 
     EditText search_users;
 
