@@ -112,41 +112,41 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
         dbReference.child("Chats").push().setValue(hashMap);
 
-        final String msg = message;
-        dbReference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
-        dbReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                sendNotification(receiver, user.getName(), msg);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        final String msg = message;
+//        dbReference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+//        dbReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User user = snapshot.getValue(User.class);
+////                sendNotification(receiver, user.getName(), msg);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
-    private void sendNotification(String receiver, String username, String message) {
-        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
-        Query query = tokens.orderByKey().equalTo(receiver);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    Token token = snapshot1.getValue(Token.class);
-                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "Nowa Wiadomosc", userId);
-                    Sender sender = new Sender(data, token.getToken());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void sendNotification(String receiver, String username, String message) {
+//        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
+//        Query query = tokens.orderByKey().equalTo(receiver);
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot snapshot1 : snapshot.getChildren()) {
+//                    Token token = snapshot1.getValue(Token.class);
+//                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "Nowa Wiadomosc", userId);
+//                    Sender sender = new Sender(data, token.getToken());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onClick(View v) {

@@ -64,28 +64,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            System.out.println("Fetching FCM registration token failed");
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-
-                        // Log and toast
-                        System.out.println(token);
-                        Toast.makeText(MainActivity.this, "Token rejestracyjny dla twojego urządzenia to:" + token, Toast.LENGTH_SHORT).show();
-
-                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Tokens");
-                        Token token1 = new Token(token);
-                        dbRef.child(firebaseUser.getUid()).setValue(token);
-                    }
-                });
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            System.out.println("Fetching FCM registration token failed");
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//
+//                        // Log and toast
+//                        System.out.println(token);
+//                        Toast.makeText(MainActivity.this, "Token rejestracyjny dla twojego urządzenia to:" + token, Toast.LENGTH_SHORT).show();
+//
+////                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+////                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Tokens");
+////                        Token token1 = new Token(token);
+////                        dbRef.child(firebaseUser.getUid()).setValue(token);
+//                    }
+//                });
     }
 
 
